@@ -5,13 +5,24 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "vitest"
   },
   "private": true,
   "dependencies": {
+    "@deck.gl/carto": "^8.9.7",
+    "@deck.gl/geo-layers": "^8.9.7",
+    "@deck.gl/react": "^8.9.7",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.12.0",
+    "cartocolor": "^4.0.2",
+    "fast-memoize": "^2.5.2",
+    "hex-rgb": "^5.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0",
+    "react-map-gl": "^5.3.21",
     "styled-components": "5.3.6"
   },
   "devDependencies": {
@@ -51,5 +62,8 @@
     "vite-plugin-eslint": "^1.8.1",
     "vite-tsconfig-paths": "^4.0.2",
     "vitest": "^0.25.8"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }

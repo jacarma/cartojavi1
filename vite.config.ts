@@ -2,6 +2,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
+import path from 'path';
 
 export default defineConfig({
   cacheDir: './node_modules/.vite/cartojavi1',
@@ -39,5 +40,35 @@ export default defineConfig({
     },
     environment: 'jsdom',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    alias: {
+      '@deck.gl/carto/typed': path.resolve(
+        __dirname,
+        'node_modules',
+        '@deck.gl/carto/dist/esm'
+      ),
+      '@deck.gl/geo-layers': path.resolve(
+        __dirname,
+        'node_modules',
+        '@deck.gl/geo-layers/dist/esm'
+      ),
+      '@deck.gl/layers': path.resolve(
+        __dirname,
+        'node_modules',
+        '@deck.gl/layers/dist/esm'
+      ),
+      '@deck.gl/aggregation-layers': path.resolve(
+        __dirname,
+        'node_modules',
+        '@deck.gl/aggregation-layers/dist/esm'
+      ),
+    },
+    // resolvers: [
+    //   {
+    //     test: /@deck.gl\/carto\/typed/,
+    //     resolve: (id) => {
+    //       return id.replace('@deck.gl/carto/typed', '@deck.gl/carto/dist/esm');
+    //     },
+    //   },
+    // ],
   },
 });
