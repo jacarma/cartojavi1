@@ -1,11 +1,13 @@
+import { Skeleton } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Suspense, lazy } from 'react';
 import { Provider } from 'react-redux';
 import { FullSizeLayers } from 'src/components/Layout';
+import { createGlobalStyle } from 'styled-components';
 import { store } from '../store/store';
 import Controls from './Map/controls/Controls';
-import { Map } from './Map/Map';
-import { initCarto } from './layer/initCarto';
-import { createGlobalStyle } from 'styled-components';
+
+const Map = lazy(() => import('./Map/Map'));
 
 const HtmlStyle = createGlobalStyle`
   html {
@@ -34,14 +36,23 @@ const theme = createTheme({
   },
 });
 
-initCarto();
-
 export function App() {
   return (
     <AppProviders>
       <HtmlStyle />
       <FullSizeLayers>
-        <Map initialViewState={INITIAL_VIEW_STATE} />
+        <Suspense
+          fallback={
+            <Skeleton
+              variant="rectangular"
+              width="100%"
+              height="100%"
+              animation="wave"
+            />
+          }
+        >
+          <Map initialViewState={INITIAL_VIEW_STATE} />
+        </Suspense>
         <Controls />
       </FullSizeLayers>
     </AppProviders>

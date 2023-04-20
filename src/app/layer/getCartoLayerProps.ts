@@ -1,6 +1,5 @@
-import { MAP_TYPES } from '@deck.gl/carto/typed';
 import { getCartoLayerStyleProps } from './getCartoLayerStyleProps';
-import { LayerDefinition, TileStats } from './model';
+import { LayerDefinition, MAP_TYPES, TileStats } from './model';
 
 const defaultOptions = {
   type: MAP_TYPES.TABLE,

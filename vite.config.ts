@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 import path from 'path';
+import visualizer from 'rollup-plugin-visualizer';
 
 export default defineConfig({
   cacheDir: './node_modules/.vite/cartojavi1',
@@ -22,16 +23,20 @@ export default defineConfig({
     viteTsConfigPaths({
       root: './',
     }),
+    visualizer({
+      template: 'treemap', // or sunburst
+      open: true,
+      gzipSize: true,
+      brotliSize: true,
+      filename: 'analize.html',
+    }),
   ],
 
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [
-  //    viteTsConfigPaths({
-  //      root: './',
-  //    }),
-  //  ],
-  // },
+  resolve: {
+    alias: {
+      'moment-timezone': 'moment-timezone/moment-timezone.js',
+    },
+  },
 
   test: {
     globals: true,
@@ -64,13 +69,5 @@ export default defineConfig({
         '@deck.gl/aggregation-layers/dist/esm'
       ),
     },
-    // resolvers: [
-    //   {
-    //     test: /@deck.gl\/carto\/typed/,
-    //     resolve: (id) => {
-    //       return id.replace('@deck.gl/carto/typed', '@deck.gl/carto/dist/esm');
-    //     },
-    //   },
-    // ],
   },
 });

@@ -6,8 +6,15 @@ import { useLayerDispatchers } from 'src/App/layer/store/layersSlice';
 import { CartoJavi1State } from 'src/store/store';
 import { getCartoLayerProps } from '../layer/getCartoLayerProps';
 import { TileStats } from '../layer/model';
+import { initCarto } from '../layer/initCarto';
 
-export function Map({ initialViewState }: { initialViewState: ViewState }) {
+initCarto();
+
+export default function Map({
+  initialViewState,
+}: {
+  initialViewState: ViewState;
+}) {
   const layersConfig = useSelector((state: CartoJavi1State) => state.layers);
   const { updateTileStats } = useLayerDispatchers();
 

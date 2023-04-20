@@ -1,8 +1,7 @@
 import { render, fireEvent } from '@testing-library/react';
 
 import { IconPicker } from './IconPicker';
-import { LayerDefinition } from 'src/App/layer/model';
-import { MAP_TYPES } from '@deck.gl/carto/typed';
+import { LayerDefinition, MAP_TYPES } from 'src/App/layer/model';
 
 const layer: LayerDefinition = {
   style: {

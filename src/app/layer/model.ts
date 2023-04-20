@@ -1,5 +1,12 @@
 import { cartocolor } from 'cartocolor';
-import { MAP_TYPES } from '@deck.gl/carto/typed';
+// import { MAP_TYPES } from '@deck.gl/carto/typed';
+// we are copying MAP_TYPES to prevent a dependency here
+// because we want all the deck.gl dependencies to be on the Map chunk
+export const MAP_TYPES = {
+  QUERY: 'query',
+  TABLE: 'table',
+  TILESET: 'tileset',
+};
 export type MAP_TYPE_KEYS = keyof typeof MAP_TYPES;
 export type MAP_TYPE_VALUES = (typeof MAP_TYPES)[MAP_TYPE_KEYS];
 export type ColorThemeName = keyof typeof cartocolor;

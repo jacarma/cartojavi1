@@ -1,4 +1,4 @@
-import { MAP_TYPES } from '@deck.gl/carto/typed';
+import { MAP_TYPES } from 'src/App/layer/model';
 import {
   CartoLayerDataSource,
   Choropleth,

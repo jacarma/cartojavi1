@@ -1,5 +1,4 @@
-import { MAP_TYPES } from '@deck.gl/carto/typed';
-import { LayerDefinition } from 'src/App/layer/model';
+import { LayerDefinition, MAP_TYPES } from 'src/App/layer/model';
 
 export const initialLayerState: LayerDefinition[] = [
   {
