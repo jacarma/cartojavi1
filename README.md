@@ -2,6 +2,8 @@
 
 Demo application with Deck.gl and Carto Layers
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/49dddc15-8d11-4ace-848c-e8ce501575b7/deploy-status)](https://app.netlify.com/sites/cartojavi1/deploys)
+
 ## Technical decissions
 
 ### Stack
