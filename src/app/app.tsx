@@ -1,8 +1,22 @@
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Provider } from 'react-redux';
 import { FullSizeLayers } from 'src/components/Layout';
-import { Controls, TopLeft } from './map/controls/Controls';
-import { Map } from './map/map';
-import { LayersConfig } from './map/controls/LayersConfig/LayersConfig';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { store } from '../store/store';
+import Controls from './Map/controls/Controls';
+import { Map } from './Map/Map';
+import { initCarto } from './layer/initCarto';
+import { createGlobalStyle } from 'styled-components';
+
+const HtmlStyle = createGlobalStyle`
+  html {
+    font-size: 12px;
+  }
+
+  /* Fix mapbox warning */
+  .mapboxgl-canary {
+    background-color: rgb(250, 128, 114)
+  }
+`;
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
@@ -20,18 +34,19 @@ const theme = createTheme({
   },
 });
 
+initCarto();
+
 export function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <FullSizeLayers>
-        <Map initialViewState={INITIAL_VIEW_STATE} />
-        <Controls>
-          <TopLeft>
-            <LayersConfig />
-          </TopLeft>
-        </Controls>
-      </FullSizeLayers>
-    </ThemeProvider>
+    <Provider store={store}>
+      <HtmlStyle />
+      <ThemeProvider theme={theme}>
+        <FullSizeLayers>
+          <Map initialViewState={INITIAL_VIEW_STATE} />
+          <Controls />
+        </FullSizeLayers>
+      </ThemeProvider>
+    </Provider>
   );
 }
 

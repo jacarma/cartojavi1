@@ -5,7 +5,8 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "vitest"
+    "test": "vitest",
+    "lint": "nx lint"
   },
   "private": true,
   "dependencies": {
@@ -14,15 +15,17 @@
     "@deck.gl/react": "^8.9.7",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@mapbox/maki": "^8.0.1",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.0",
+    "@reduxjs/toolkit": "^1.9.4",
     "cartocolor": "^4.0.2",
-    "fast-memoize": "^2.5.2",
     "hex-rgb": "^5.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0",
     "react-map-gl": "^5.3.21",
+    "react-redux": "^8.0.5",
     "styled-components": "5.3.6"
   },
   "devDependencies": {

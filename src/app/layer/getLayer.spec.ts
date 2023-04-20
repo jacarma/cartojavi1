@@ -1,7 +1,7 @@
 import { MAP_TYPES } from '@deck.gl/carto/typed';
 import { CartoLayerDataSource } from './dataSource';
-import { getCartoLayerProps_ } from './getLayer';
-import { PolygonStyle, ColorGetterFn } from './layerStyles';
+import { getCartoLayerProps_ } from './getCartoLayerProps';
+import { PolygonStyle, ColorGetterFn } from './getCartoLayerStyleProps';
 
 function mockDataSource(): CartoLayerDataSource {
   return {

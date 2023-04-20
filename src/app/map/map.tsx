@@ -1,81 +1,32 @@
-import { BASEMAP, CartoLayer, MAP_TYPES } from '@deck.gl/carto/typed';
+import { BASEMAP, CartoLayer } from '@deck.gl/carto/typed';
 import DeckGL from '@deck.gl/react/typed';
-import { cartocolor } from 'cartocolor';
 import { StaticMap, ViewState } from 'react-map-gl';
-import { getCartoLayerProps } from './layer/getLayer';
-import './fix-mapbox-warning.css';
-import { IconStyle } from './layer/layerStyles';
-import { CartoLayerDataSource } from './layer/dataSource';
-import { getChoroplethColorizer } from './layer/choropletColorizer';
-
-const s1: IconStyle = {
-  getIconSize: () => 15,
-  getIconColor: () => [255, 100, 0],
-  getIcon: () => ({
-    url: 'https://clausa.app.carto.com/markers/maki/airport.svg',
-    width: 15,
-    height: 15,
-    mask: true,
-  }),
-  pointType: 'icon',
-  type: 'ICON-STYLE',
-};
-const d1: CartoLayerDataSource = {
-  id: 'airports',
-  data: 'carto-demo-data.demo_tables.airports',
-};
-const layer = new CartoLayer(getCartoLayerProps(d1, s1));
-
-const l2 = new CartoLayer(
-  getCartoLayerProps(
-    {
-      id: 'stores',
-      data: 'carto-demo-data.demo_tables.retail_stores',
-    },
-    {
-      pointRadiusMinPixels: 3,
-      getLineColor: [0, 0, 0, 100],
-      lineWidthMinPixels: 1,
-      type: 'CIRCLE-STYLE',
-      pointType: 'circle',
-      getFillColor: [255, 255, 0, 255],
-    }
-  )
-);
-
-const l3 = new CartoLayer(
-  getCartoLayerProps(
-    {
-      id: 'sociodemographics',
-      type: MAP_TYPES.TILESET,
-      data: 'carto-demo-data.demo_tilesets.sociodemographics_usa_blockgroup',
-    },
-    {
-      lineWidthMinPixels: 1,
-      type: 'POLYGON-STYLE',
-      getFillColor: getChoroplethColorizer(
-        cartocolor.DarkMint,
-        'median_income',
-        6
-      ),
-    }
-  )
-);
-
-const layers = [l3, l2, layer];
+import { useSelector } from 'react-redux';
+import { useLayerDispatchers } from 'src/App/layer/store/layersSlice';
+import { CartoJavi1State } from 'src/store/store';
+import { getCartoLayerProps } from '../layer/getCartoLayerProps';
+import { TileStats } from '../layer/model';
 
 export function Map({ initialViewState }: { initialViewState: ViewState }) {
+  const layersConfig = useSelector((state: CartoJavi1State) => state.layers);
+  const { updateTileStats } = useLayerDispatchers();
+
+  // We don't need to useMemo here because deck.gl is already diffing
+  // https://github.com/visgl/deck.gl/blob/master/docs/developer-guide/using-layers.md#should-i-be-creating-new-layers-on-every-render
+  const layers = layersConfig.map((layer) => {
+    const onDataLoad = (tilestats: TileStats) => {
+      updateTileStats(layer.dataSource.id, tilestats);
+    };
+    return new CartoLayer(getCartoLayerProps(layer, onDataLoad));
+  });
+
   return (
     <DeckGL
       initialViewState={initialViewState}
       layers={layers}
       controller={true}
     >
-      <StaticMap
-        mapStyle={BASEMAP.POSITRON}
-        attributionControl={true}
-        style={{ zIndex: 100 }}
-      />
+      <StaticMap mapStyle={BASEMAP.POSITRON} attributionControl={true} />
     </DeckGL>
   );
 }

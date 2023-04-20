@@ -4,7 +4,7 @@ import {
   getChoroplethColorizer,
   hexColorToRGB,
 } from './choropletColorizer';
-import { PolygonStyle } from './layerStyles';
+import { PolygonStyle } from './getCartoLayerStyleProps';
 
 describe('addColorGetters', () => {
   const tilestats = {
