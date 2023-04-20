@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 import path from 'path';
-import visualizer from 'rollup-plugin-visualizer';
+// import visualizer from 'rollup-plugin-visualizer';
 
 export default defineConfig({
   cacheDir: './node_modules/.vite/cartojavi1',
@@ -23,20 +23,20 @@ export default defineConfig({
     viteTsConfigPaths({
       root: './',
     }),
-    visualizer({
-      template: 'treemap', // or sunburst
-      open: true,
-      gzipSize: true,
-      brotliSize: true,
-      filename: 'analize.html',
-    }),
+    // visualizer({
+    //   template: 'treemap', // or sunburst
+    //   open: true,
+    //   gzipSize: true,
+    //   brotliSize: true,
+    //   filename: 'analize.html',
+    // }),
   ],
 
-  resolve: {
-    alias: {
-      'moment-timezone': 'moment-timezone/moment-timezone.js',
-    },
-  },
+  // resolve: {
+  //   alias: {
+  //     'moment-timezone': 'moment-timezone/moment-timezone.js',
+  //   },
+  // },
 
   test: {
     globals: true,
