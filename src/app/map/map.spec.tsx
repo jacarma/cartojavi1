@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-
 import { Map } from './Map';
+import { AppProviders } from '../App';
 
 describe('Map', () => {
   it('should render successfully', () => {
@@ -13,7 +13,8 @@ describe('Map', () => {
     };
 
     const { baseElement } = render(
-      <Map initialViewState={INITIAL_VIEW_STATE} />
+      <Map initialViewState={INITIAL_VIEW_STATE} />,
+      { wrapper: AppProviders }
     );
 
     expect(baseElement).toBeTruthy();

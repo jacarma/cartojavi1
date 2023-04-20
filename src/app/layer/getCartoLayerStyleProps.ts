@@ -1,4 +1,4 @@
-import { getChoroplethColorizer } from './choropletColorizer';
+import { getChoroplethColorizer } from './choroplethColorizer';
 import {
   CartoLayerStyle,
   Color,
@@ -7,15 +7,17 @@ import {
   TileStats,
 } from './model';
 
-type SimpleObject = {
-  [key: string]: string | number | boolean | SimpleObject | SimpleObject[];
+export type BasicType = string | number | boolean;
+export type SimpleObject = {
+  [key: string]: BasicType | BasicType[] | SimpleObject | SimpleObject[];
 };
-
+export type ColorGetter = (feature: Feature) => Color;
+export type NumberGetter = (feature: Feature) => number;
 export type GeneratedCartoStyleProps = {
-  getLineColor?: Color | ((feature: Feature) => Color);
-  getFillColor?: Color | ((feature: Feature) => Color);
-  getIconColor?: Color | ((feature: Feature) => Color);
-  getIconSize?: number | ((feature: Feature) => number);
+  getLineColor?: Color | ColorGetter;
+  getFillColor?: Color | ColorGetter;
+  getIconColor?: Color | ColorGetter;
+  getIconSize?: number | NumberGetter;
   lineWidthMinPixels?: number;
   updateTriggers?: SimpleObject;
   iconAtlas?: string;

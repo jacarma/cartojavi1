@@ -38,7 +38,7 @@ export default function Controls() {
         <LayersConfig />
       </TopLeft>
       <BottomLeft>
-        <Typography>
+        <Typography data-testid="by-javi">
           With{' '}
           <span role="img" aria-label="heart emoji">
             ❤️

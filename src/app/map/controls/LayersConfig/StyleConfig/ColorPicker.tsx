@@ -22,7 +22,8 @@ export function ColorPicker({
           const colorArray = hexColorToRGB(e.target.value);
           onChange(colorArray);
         }}
-      ></HtmlColorPicker>
+        data-testid="color-picker"
+      />
     </>
   );
 }

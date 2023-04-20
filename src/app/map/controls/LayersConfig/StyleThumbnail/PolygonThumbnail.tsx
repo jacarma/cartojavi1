@@ -30,6 +30,7 @@ export function PolygonThumbnail({
           fill={`${colorArrToCSS(fill)}`}
           stroke={`${colorArrToCSS(strokeColor)}`}
           strokeWidth={strokeWidth}
+          data-testid="rect"
         />
       </ThumbnailSvg>
     );
@@ -67,6 +68,7 @@ export function PolygonThumbnail({
             stroke={`${colorArrToCSS(strokeColor)}`}
             strokeWidth={strokeWidth}
             key={i}
+            data-testid="band"
           />
         ))}
       </ThumbnailSvg>

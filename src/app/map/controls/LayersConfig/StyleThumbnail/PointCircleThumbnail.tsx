@@ -21,6 +21,7 @@ export function PointCircleThumbnail({ style }: { style: CircleStyle }) {
         fill={`${colorArrToCSS(fillColor)}`}
         stroke={`${colorArrToCSS(strokeColor)}`}
         strokeWidth={strokeWidth}
+        data-testid="circle"
       />
     </ThumbnailSvg>
   );

@@ -29,6 +29,7 @@ export const ThumbnailSvg = ({
     height="24px"
     viewBox={`0 0 ${width} 24`}
     xmlns="http://www.w3.org/2000/svg"
+    data-testid="thumbnail"
   >
     {children}
   </svg>

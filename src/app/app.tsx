@@ -38,16 +38,22 @@ initCarto();
 
 export function App() {
   return (
-    <Provider store={store}>
+    <AppProviders>
       <HtmlStyle />
-      <ThemeProvider theme={theme}>
-        <FullSizeLayers>
-          <Map initialViewState={INITIAL_VIEW_STATE} />
-          <Controls />
-        </FullSizeLayers>
-      </ThemeProvider>
-    </Provider>
+      <FullSizeLayers>
+        <Map initialViewState={INITIAL_VIEW_STATE} />
+        <Controls />
+      </FullSizeLayers>
+    </AppProviders>
   );
 }
 
 export default App;
+
+export function AppProviders({ children }: { children: React.ReactNode }) {
+  return (
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    </Provider>
+  );
+}

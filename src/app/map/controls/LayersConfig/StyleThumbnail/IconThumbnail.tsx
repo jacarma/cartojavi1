@@ -21,7 +21,9 @@ export function IconThumbnail({
 }
 
 // Hack to recolor an SVG loaded with url
-export const ColoredIcon = styled.div<{
+export const ColoredIcon = styled.div.attrs(() => ({
+  'data-testid': 'colored-icon',
+}))<{
   color: string;
   url: string;
   iconSize: number;

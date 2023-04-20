@@ -1,4 +1,3 @@
-import { LayerData } from '@deck.gl/core/typed';
 import { MAP_TYPES } from '@deck.gl/carto/typed';
 import { getCartoLayerStyleProps } from './getCartoLayerStyleProps';
 import { LayerDefinition, TileStats } from './model';
@@ -20,6 +19,7 @@ export function getCartoLayerProps(
     ...getCartoLayerStyleProps(style, tilestats),
     // TODO: didn't find a way to use a right type here, maybe deck.gl didn't expect tilestats here
     onDataLoad: (layerData: any) => {
+      // console.log(layerData);
       if (layerData.tilestats) {
         onDataLoad(layerData.tilestats as TileStats);
       }

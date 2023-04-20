@@ -1,37 +1,53 @@
 import { MAP_TYPES } from '@deck.gl/carto/typed';
-import { CartoLayerDataSource } from './dataSource';
-import { getCartoLayerProps_ } from './getCartoLayerProps';
-import { PolygonStyle, ColorGetterFn } from './getCartoLayerStyleProps';
+import {
+  CartoLayerDataSource,
+  Choropleth,
+  PolygonStyle,
+  TileStats,
+} from './model';
+import { getCartoLayerProps } from './getCartoLayerProps';
+import { ColorGetter } from './getCartoLayerStyleProps';
+import { cartocolor } from 'cartocolor';
+import { hexColorToRGB } from './colorUtils';
 
-function mockDataSource(): CartoLayerDataSource {
-  return {
-    id: 'mock_id',
-    type: MAP_TYPES.TABLE,
-    connection: 'carto_dw',
-    data: 'table_name',
-  };
-}
+const dataSource: CartoLayerDataSource = {
+  id: 'mock_id',
+  type: MAP_TYPES.TABLE,
+  connection: 'carto_dw',
+  data: 'table_name',
+};
 
-function mockStyles(): PolygonStyle {
-  return {
-    type: 'POLYGON-STYLE',
-    lineWidthMinPixels: 1,
-    getLineColor: [0, 0, 0],
-    getFillColor: [255, 255, 255],
-  };
-}
+const style: PolygonStyle = {
+  type: 'POLYGON-STYLE',
+  lineWidthMinPixels: 1,
+  lineColor: [0, 0, 0],
+  fillColor: [255, 255, 255],
+};
 
-function mockMetadata() {
-  return { tilestats: { layers: [{ name: 'test' }] } };
-}
+const tilestats: TileStats = {
+  layers: [
+    {
+      attributes: [
+        {
+          attribute: 'population',
+          quantiles: [[], [0, 300], [0, 150, 300], [0, 100, 200, 300]],
+        },
+      ],
+    },
+  ],
+};
+
+const onDataLoad = vitest.fn();
+const layerProps = {
+  dataSource,
+  style,
+  tilestats,
+};
+
+const cartoLayerProps = getCartoLayerProps(layerProps, onDataLoad);
 
 describe('getCartoLayerProps_', () => {
   test('should return an object with the correct properties', () => {
-    const dataSource = mockDataSource();
-    const styles = mockStyles();
-
-    const cartoLayerProps = getCartoLayerProps_(dataSource, styles);
-
     // The returned object contains the dataSource properties
     Object.entries(dataSource).forEach(([key, value]) => {
       expect(cartoLayerProps[key as keyof typeof cartoLayerProps]).toEqual(
@@ -40,36 +56,39 @@ describe('getCartoLayerProps_', () => {
     });
 
     // The returned object contains the styles properties (except type)
-    Object.entries(styles)
-      .filter(([key]) => key !== 'type')
-      .forEach(([key, value]) => {
-        expect(cartoLayerProps[key as keyof typeof cartoLayerProps]).toEqual(
-          value
-        );
-      });
+    expect(cartoLayerProps).toMatchObject({
+      connection: 'carto_dw',
+      data: 'table_name',
+      getFillColor: [255, 255, 255],
+      getLineColor: [0, 0, 0],
+      id: 'mock_id',
+      lineWidthMinPixels: 1,
+      type: 'table',
+      updateTriggers: {},
+      // onDataLoad is added by getCartoLayerProps
+    });
   });
 
   test('Should add an onDataLoad prop', () => {
-    const dataSource = mockDataSource();
-    const styles = mockStyles();
-
-    const cartoLayerProps = getCartoLayerProps_(dataSource, styles);
-
     expect(cartoLayerProps.onDataLoad).toBeDefined();
     expect(typeof cartoLayerProps.onDataLoad).toBe('function');
   });
 
-  test('When getFillColor is a function, it will receive a tilestats object', () => {
-    const getFillColor = vitest.fn();
-    const dataSource = mockDataSource();
-    const styles = { ...mockStyles(), getFillColor };
-    const metadata = mockMetadata();
-    const feature = { properties: {} };
-
-    const cartoLayerProps = getCartoLayerProps_(dataSource, styles);
-    cartoLayerProps.onDataLoad(metadata);
-    (cartoLayerProps.getFillColor as ColorGetterFn)(feature);
-
-    expect(getFillColor).toHaveBeenCalledWith(feature, metadata.tilestats);
+  test('Styles are generated including choropleths', async () => {
+    const props = {
+      ...layerProps,
+      style: {
+        ...layerProps.style,
+        fillColor: {
+          colors: 'Burg',
+          attribute: 'population',
+          numQuantiles: 3,
+        } as Choropleth,
+      },
+    };
+    const cartoProps = getCartoLayerProps(props, onDataLoad);
+    const feature = { properties: { population: 150 } };
+    const color = (cartoProps.getFillColor as ColorGetter)(feature);
+    expect(color).toEqual(hexColorToRGB(cartocolor.Burg[3][1]));
   });
 });

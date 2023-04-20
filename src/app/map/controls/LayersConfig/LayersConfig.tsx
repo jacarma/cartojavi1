@@ -19,7 +19,7 @@ export function LayersConfig() {
   };
 
   return (
-    <AccordionWrapper>
+    <AccordionWrapper data-testid="layers-config">
       {layersConfig.map((layer) => {
         return (
           <LayerConfig

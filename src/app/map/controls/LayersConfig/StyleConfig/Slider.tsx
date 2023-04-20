@@ -29,6 +29,7 @@ export function Slider({
             onChange(value as number);
           }}
           valueLabelDisplay="auto"
+          data-testid="slider"
         />
       </SliderWrap>
     </>

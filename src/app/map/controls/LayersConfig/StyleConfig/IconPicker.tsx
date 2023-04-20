@@ -12,7 +12,7 @@ export function IconPicker({
 }) {
   const style = layer.style as IconStyle;
   return (
-    <div>
+    <div data-testid="icon-picker">
       <Typography gutterBottom>Icon</Typography>
 
       {layouts.map((layout) => (
@@ -20,6 +20,7 @@ export function IconPicker({
           src={`https://clausa.app.carto.com/markers/maki/${layout}.svg`}
           selected={layout === style.url}
           key={layout}
+          alt={layout}
           onClick={() => {
             if (layout !== style.url) {
               onClick(layout);
