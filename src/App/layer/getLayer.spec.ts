@@ -7,7 +7,7 @@ import {
 } from './model';
 import { getCartoLayerProps } from './getCartoLayerProps';
 import { ColorGetter } from './getCartoLayerStyleProps';
-import { cartocolor } from 'cartocolor';
+import cartocolor from 'cartocolor';
 import { hexColorToRGB } from './colorUtils';
 
 const dataSource: CartoLayerDataSource = {

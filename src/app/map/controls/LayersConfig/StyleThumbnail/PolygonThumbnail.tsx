@@ -5,7 +5,7 @@ import {
   PolygonStyle,
 } from 'src/App/layer/model';
 import { ThumbnailSvg } from './StyleThumbnail';
-import { cartocolor } from 'cartocolor';
+import cartocolor from 'cartocolor';
 
 const CHOROPLETH_THUMBNAIL_WIDTH = 48;
 const THUMBNAIL_WIDTH = 24;

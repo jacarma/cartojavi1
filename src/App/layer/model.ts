@@ -1,4 +1,4 @@
-import { cartocolor } from 'cartocolor';
+import cartocolor from 'cartocolor';
 // import { MAP_TYPES } from '@deck.gl/carto/typed';
 // we are copying MAP_TYPES to prevent a dependency here
 // because we want all the deck.gl dependencies to be on the Map chunk

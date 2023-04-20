@@ -32,11 +32,11 @@ export default defineConfig({
     // }),
   ],
 
-  // resolve: {
-  //   alias: {
-  //     'moment-timezone': 'moment-timezone/moment-timezone.js',
-  //   },
-  // },
+  resolve: {
+    alias: {
+      'moment-timezone': 'moment-timezone/moment-timezone.js',
+    },
+  },
 
   test: {
     globals: true,

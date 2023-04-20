@@ -22,41 +22,39 @@ declare module 'cartocolor' {
     tags: string[];
   };
 
-  export const cartocolor = {
-    Burg: UpToSeven,
-    BurgYl: UpToSeven,
-    RedOr: UpToSeven,
-    OrYel: UpToSeven,
-    Peach: UpToSeven,
-    PinkYl: UpToSeven,
-    Mint: UpToSeven,
-    BluGrn: UpToSeven,
-    DarkMint: UpToSeven,
-    Emrld: UpToSeven,
-    ag_GrnYl: UpToSeven,
-    BluYl: UpToSeven,
-    Teal: UpToSeven,
-    TealGrn: UpToSeven,
-    Purp: UpToSeven,
-    PurpOr: UpToSeven,
-    Sunset: UpToSeven,
-    Magenta: UpToSeven,
-    SunsetDark: UpToSeven,
-    ag_Sunset: UpToSeven,
-    BrwnYl: UpToSeven,
-    ArmyRose: UpToSeven,
-    Fall: UpToSeven,
-    Geyser: UpToSeven,
-    Temps: UpToSeven,
-    TealRose: UpToSeven,
-    Tropic: UpToSeven,
-    Earth: UpToSeven,
+  export const Burg: UpToSeven;
+  export const BurgYl: UpToSeven;
+  export const RedOr: UpToSeven;
+  export const OrYel: UpToSeven;
+  export const Peach: UpToSeven;
+  export const PinkYl: UpToSeven;
+  export const Mint: UpToSeven;
+  export const BluGrn: UpToSeven;
+  export const DarkMint: UpToSeven;
+  export const Emrld: UpToSeven;
+  export const ag_GrnYl: UpToSeven;
+  export const BluYl: UpToSeven;
+  export const Teal: UpToSeven;
+  export const TealGrn: UpToSeven;
+  export const Purp: UpToSeven;
+  export const PurpOr: UpToSeven;
+  export const Sunset: UpToSeven;
+  export const Magenta: UpToSeven;
+  export const SunsetDark: UpToSeven;
+  export const ag_Sunset: UpToSeven;
+  export const BrwnYl: UpToSeven;
+  export const ArmyRose: UpToSeven;
+  export const Fall: UpToSeven;
+  export const Geyser: UpToSeven;
+  export const Temps: UpToSeven;
+  export const TealRose: UpToSeven;
+  export const Tropic: UpToSeven;
+  export const Earth: UpToSeven;
 
-    Antique: UpToEleven,
-    Bold: UpToEleven,
-    Pastel: UpToEleven,
-    Prism: UpToEleven,
-    Safe: UpToEleven,
-    Vivid: UpToEleven,
-  };
+  export const Antique: UpToEleven;
+  export const Bold: UpToEleven;
+  export const Pastel: UpToEleven;
+  export const Prism: UpToEleven;
+  export const Safe: UpToEleven;
+  export const Vivid: UpToEleven;
 }
