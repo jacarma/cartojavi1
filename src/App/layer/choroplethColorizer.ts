@@ -1,4 +1,5 @@
-import { cartocolor } from 'cartocolor';
+import cartocolor from 'cartocolor';
+
 import {
   Color,
   ColorThemeName,
