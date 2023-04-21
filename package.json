@@ -6,6 +6,7 @@
     "start": "nx serve",
     "build": "vite build",
     "test": "vitest",
+    "coverage": "vitest --coverage",
     "lint": "nx lint"
   },
   "private": true,
