@@ -28,7 +28,7 @@ export default function Map({
     return new CartoLayer(
       getCartoLayerProps(layer, onDataLoad) as CartoLayerDataSource &
         GeneratedCartoStyleProps & {
-          onDataLoad: (tilestats: any) => void;
+          onDataLoad: (layerdata: unknown) => void;
         }
     );
   });

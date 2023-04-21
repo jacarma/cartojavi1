@@ -26,7 +26,7 @@ export function getCartoLayerProps(
     ...dataSource,
     ...getCartoLayerStyleProps(style, tilestats),
     // TODO: didn't find a way to use a right type here, maybe deck.gl didn't expect tilestats here
-    onDataLoad: (layerData: any) => {
+    onDataLoad: (layerData) => {
       // console.log(layerData);
       if (layerData.tilestats) {
         onDataLoad(layerData.tilestats as TileStats);
@@ -39,5 +39,8 @@ export function getCartoLayerProps(
     //     resizeQuality: 'high',
     //   },
     // },
-  } as GeneratedCartoStyleProps & CartoLayerDataSource;
+  } as GeneratedCartoStyleProps &
+    CartoLayerDataSource & {
+      onDataLoad: (layerdata: { tilestats?: TileStats }) => void;
+    };
 }

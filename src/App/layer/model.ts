@@ -2,13 +2,12 @@ import cartocolor from 'cartocolor';
 // import { MAP_TYPES } from '@deck.gl/carto/typed';
 // we are copying MAP_TYPES to prevent a dependency here
 // because we want all the deck.gl dependencies to be on the Map chunk
-export const MAP_TYPES = {
-  QUERY: 'query',
-  TABLE: 'table',
-  TILESET: 'tileset',
-};
-export type MAP_TYPE_KEYS = keyof typeof MAP_TYPES;
-export type MAP_TYPE_VALUES = (typeof MAP_TYPES)[MAP_TYPE_KEYS];
+export enum MAP_TYPES {
+  QUERY = 'query',
+  TABLE = 'table',
+  TILESET = 'tileset',
+}
+export type MAP_TYPE_VALUES = 'query' | 'table' | 'tileset';
 export type ColorThemeName = keyof typeof cartocolor;
 export type NumQuantiles = 2 | 3 | 4 | 5 | 6 | 7;
 

@@ -1,10 +1,6 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { CartoLayerStyle } from 'src/App/layer/model';
 import { StyleThumbnail, ThumbnailSvg } from './StyleThumbnail';
-import { PointCircleThumbnail } from './PointCircleThumbnail';
-import { PolygonThumbnail } from './PolygonThumbnail';
-import { IconThumbnail } from './IconThumbnail';
 
 describe('StyleThumbnail component', () => {
   const style = { fillColor: [1, 2, 3], lineColor: [1, 2, 3] };
